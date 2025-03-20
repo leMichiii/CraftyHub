@@ -1,0 +1,9 @@
+name: CraftyHub
+version: '${project.version}'
+main: de.lemichiii.craftyhub.CraftyHub
+api-version: '1.21'
+author: leMichiii
+description: LobbySystem of Craftylon.de
+website: https://www.craftylon.de
+
+commands:
