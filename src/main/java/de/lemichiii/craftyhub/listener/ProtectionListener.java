@@ -9,7 +9,10 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerPickupArrowEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
 public class ProtectionListener implements Listener {
@@ -65,5 +68,24 @@ public class ProtectionListener implements Listener {
     @EventHandler
     public void onWeather(WeatherChangeEvent event) {
         event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onDrop(PlayerDropItemEvent event) {
+        Player player = event.getPlayer();
+            if (player.getGameMode().equals(GameMode.CREATIVE)) {
+                event.setCancelled(false);
+            } else {
+                event.setCancelled(true);
+            }
+        }
+    @EventHandler
+    public void onPickup(PlayerPickupItemEvent event) {
+        Player player = event.getPlayer();
+        if (player.getGameMode().equals(GameMode.CREATIVE)) {
+            event.setCancelled(false);
+        } else {
+            event.setCancelled(true);
+        }
     }
 }
