@@ -1,5 +1,9 @@
 package de.lemichiii.craftyhub;
 
+import de.lemichiii.craftyhub.items.TeleporterItem;
+import de.lemichiii.craftyhub.listener.JoinListener;
+import de.lemichiii.craftyhub.listener.ProtectionListener;
+import de.lemichiii.craftyhub.listener.QuitListener;
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import org.bukkit.command.ConsoleCommandSender;
@@ -20,6 +24,10 @@ public final class CraftyHub extends JavaPlugin {
     public void onEnable() {
         this.consoleSender.sendMessage(getPrefix() + "§2Das §d§lCraftyHub §2Plugin wurde aktiviert.");
 
+        this.getServer().getPluginManager().registerEvents(new JoinListener(), this);
+        this.getServer().getPluginManager().registerEvents(new QuitListener(), this);
+        this.getServer().getPluginManager().registerEvents(new ProtectionListener(), this);
+        this.getServer().getPluginManager().registerEvents(new TeleporterItem(), this);
     }
 
     @Override
